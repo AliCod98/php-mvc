@@ -5,19 +5,19 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 
 -- -----------------------------------------------------
--- Schema gestion
+-- Schema php_mvc
 -- -----------------------------------------------------
 
 -- -----------------------------------------------------
--- Schema gestion
+-- Schema php_mvc
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `gestion` DEFAULT CHARACTER SET utf8 ;
-USE `gestion` ;
+CREATE SCHEMA IF NOT EXISTS `php_mvc` DEFAULT CHARACTER SET utf8 ;
+USE `php_mvc` ;
 
 -- -----------------------------------------------------
--- Table `gestion`.`comptes`
+-- Table `php_mvc`.`comptes`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `gestion`.`comptes` (
+CREATE TABLE IF NOT EXISTS `php_mvc`.`comptes` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NULL,
   `email` VARCHAR(45) NOT NULL,
@@ -30,14 +30,14 @@ ENGINE = InnoDB;
 
 -- Insert to table comptes
 iNSERT INTO `comptes` (`id`, `name`, `email`, `password`, `role`, `created_at`) VALUES
-(2, 'admin', 'admin@gmail.com', '$2y$12$fK7tw6bInmnumd8XzY2C.eRy9KHo7fyW0V2B1LqPLNgSOk9Lcgxx2', 'admin', '2019-08-14 04:36:55'),
-(1, 'student', 'student@gmail.com', '$2y$12$fK7tw6bInmnumd8XzY2C.eRy9KHo7fyW0V2B1LqPLNgSOk9Lcgxx2.', 'student', '2019-08-12 16:01:21');
+(2, 'admin', 'admin@gmail.com', '$2a$12$.gOgUQ11r37qI2L4XQekOOx7WQJun7zabm3SLhGx4n1KGHitLJlgS', 'admin', '2019-08-14 04:36:55'),
+(1, 'student', 'student@gmail.com', '$2a$12$.gOgUQ11r37qI2L4XQekOOx7WQJun7zabm3SLhGx4n1KGHitLJlgS', 'student', '2019-08-12 16:01:21');
 
 
 -- -----------------------------------------------------
--- Table `gestion`.`user`
+-- Table `php_mvc`.`user`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `gestion`.`users` (
+CREATE TABLE IF NOT EXISTS `php_mvc`.`users` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `nom` VARCHAR(45) NULL,
   `prenom` VARCHAR(45) NULL,
@@ -47,7 +47,7 @@ CREATE TABLE IF NOT EXISTS `gestion`.`users` (
   INDEX `fk_user_comptes_idx` (`compte_id` ASC),
   CONSTRAINT `fk_user_comptes`
     FOREIGN KEY (`compte_id`)
-    REFERENCES `gestion`.`comptes` (`id`)
+    REFERENCES `php_mvc`.`comptes` (`id`)
     ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
@@ -62,9 +62,9 @@ iNSERT INTO `users` (`id`, `nom`, `prenom`, `age`, `compte_id`) VALUES
 
 
 -- -----------------------------------------------------
--- Table `gestion`.`formations`
+-- Table `php_mvc`.`formations`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `gestion`.`formations` (
+CREATE TABLE IF NOT EXISTS `php_mvc`.`formations` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `designation` VARCHAR(45) NULL,
   `prix` FLOAT NULL,
@@ -76,9 +76,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `gestion`.`inscriptions`
+-- Table `php_mvc`.`inscriptions`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `gestion`.`inscriptions` (
+CREATE TABLE IF NOT EXISTS `php_mvc`.`inscriptions` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `frais` FLOAT NOT NULL,
   -- `totale_paye` FLOAT NOT NULL,
@@ -93,12 +93,12 @@ CREATE TABLE IF NOT EXISTS `gestion`.`inscriptions` (
   INDEX `fk_inscriptions_formations1_idx` (`formation_id` ASC),
   CONSTRAINT `fk_inscriptions_user1`
     FOREIGN KEY (`user_id`)
-    REFERENCES `gestion`.`users` (`id`)
+    REFERENCES `php_mvc`.`users` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_inscriptions_formations1`
     FOREIGN KEY (`formation_id`)
-    REFERENCES `gestion`.`formations` (`id`)
+    REFERENCES `php_mvc`.`formations` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;

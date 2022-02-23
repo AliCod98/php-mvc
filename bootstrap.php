@@ -1,5 +1,3 @@
 <?php 
 
-define('BASE_URL','http://localhost/gestion/');
-
-?>
+define('BASE_URL','http://localhost/php-mvc/');
