@@ -5,3 +5,6 @@
           
   student => email    : student@gmail.com
           && password : password
+
+# Database 
+  nameDB => php_mvc
